@@ -49,7 +49,7 @@ export default function Header(params) {
           <div className="flex items-center space-x-4 ml-45">
             <div className="flex items-center">
               <div className="bg-customTeal text-white px-3 py-1 text-sm font-medium rounded-l-md">
-                {params.price} a month
+                {params.text1}
               </div>
               <div className="w-3 h-3 bg-teal-500 transform -skew-x-12 -ml-1"></div>
             </div>
