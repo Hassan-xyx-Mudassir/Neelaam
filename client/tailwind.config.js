@@ -36,5 +36,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [],
 };

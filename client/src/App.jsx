@@ -1,10 +1,9 @@
-import Navbar from "./components/Navbar/Navbar";
+import { router } from "./routes"
+import { RouterProvider } from "react-router-dom"
 
 function App() {
   return (
-    <div className="font-roboto bg-zinc-950 min-h-screen">
-      <Navbar />
-    </div>
+    <RouterProvider router={router}/>
   );
 }
 
