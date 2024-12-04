@@ -2,12 +2,20 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { FaStar } from "react-icons/fa";
 import React from "react";
 
-export default function leftContainer() {
+export default function productDescription() {
+  const rating = 5;
+  const renderStars = () => {
+    const stars = [];
+    for (let i = 0; i < rating; i++) {
+      stars.push(<FaStar key={i} className="text-black" />);
+    }
+    return stars;
+  };
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col border-black border-r">
         <div className="flex-row">
-          <div className="border-b  border-black h-[100px] w-[750px]">
+          <div className="border-b  border-black h-[100px] w-[750px] ">
             <h1 className="font-sans font-bold pl-10 pt-7 pb-5 text-4xl">
               CNC Discord Membership
             </h1>
@@ -24,11 +32,7 @@ export default function leftContainer() {
             </div>
             <div className="border-1 border-black h-10 ml-5 "></div>
             <div className="flex items-center space-x-1 ml-5">
-              <FaStar className="text-black" />
-              <FaStar className="text-black" />
-              <FaStar className="text-black" />
-              <FaStar className="text-black" />
-              <FaStar className="text-black" />
+              {renderStars()}
               <div className="pt-2 pb-2  ">
                 <h1 className="font-bold font-sans">130 ratings </h1>
               </div>

@@ -2,7 +2,7 @@ import React from "react";
 
 export default function imageContainer(params) {
   return (
-    <div class="h-[299px] w-[1137px] flex justify-center items-center">
+    <div className="h-[299px] w-[1137px] flex justify-center items-center">
       <img
         src={params.image}
         alt="Placeholder"

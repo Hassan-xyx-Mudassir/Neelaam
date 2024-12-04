@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { AiOutlineLink } from "react-icons/ai";
 
-export default function rightContainer() {
+export default function ProductPayment() {
   return (
     <>
       <div>
@@ -39,7 +39,7 @@ export default function rightContainer() {
             Add to cart
           </button>
           <div className="w-[330px] h-[45px] border border-black rounded ml-2 mb-5 mr-2 py-2">
-            <h6 className="font-bold p-1 ml-4 text-small">Membership Access</h6>
+            <h6 className="font-bold p-1 ml-2 text-small">Membership Access</h6>
           </div>
           <div className="flex flex-row">
             <div className="ml-2">
@@ -57,7 +57,7 @@ export default function rightContainer() {
 
             <Button
               variant="outline"
-              className=" ml-2 h-[50px] w-[50px] text-xs border border-black"
+              className="ml-2 h-[50px] w-[50px] text-xs border border-black hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] transition-shadow duration-200"
             >
               <AiOutlineLink />
             </Button>
