@@ -5,6 +5,13 @@ import Modal from "@/components/ui/modal";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import React, { useState } from "react";
 
@@ -44,7 +51,7 @@ export default function () {
   return (
     <>
       <Toaster />
-      <div className="h-screen w-full bg-[#242423]">
+      <div className="min-h-screen  w-full bg-[#242423]">
         <div className="Header flex flex-row ">
           <div className="h-[200px] bg-[#242423]">
             <div className="flex justify-between">
@@ -126,13 +133,89 @@ export default function () {
             <div className="flex  justify-between">
               <h1 className="text-[#dcdcdc] text-xl m-4">Total</h1>
               <h1 className="text-[#dcdcdc] text-xl m-4">
-                US${discountedPrice}
+                US${isDiscountApplied ? discountedPrice : price}
               </h1>
             </div>
           </div>
 
-          <div className="right_container mt-8 mr-45">
-            <h1>ok</h1>
+          <div className="right_container mt-1 mr-60 ml-1 bg-black w-[400px] border border-[#dcdcdc] rounded flex mb-10">
+            <div className="flex flex-col">
+              <div className="border-[#dcdcdc] border-b pb-5 w-[400px]">
+                <h1 className="text-[#dcdcdc] text-medium mt-5 ml-4 mb-3 ">
+                  {" "}
+                  Email Address
+                </h1>
+                <Input
+                  className="w-[368px] border h-[50px] border-[#dcdcdc] focus:border-pink-300 text-[#dcdcdc] ml-4 "
+                  placeholder="Your Email Address"
+                />
+              </div>
+              <div className="border-[#dcdcdc] border-b pb-5 w-[400px]">
+                <h1 className="text-[#dcdcdc] text-medium mt-5 ml-4 mb-3 ">
+                  {" "}
+                  Pay with
+                </h1>
+                <h1 className="text-[#dcdcdc] text-medium mt-5 ml-4 mb-3 ">
+                  {" "}
+                  Name on card
+                </h1>
+                <Input
+                  className="w-[368px] border h-[50px] border-[#dcdcdc] focus:border-pink-300 text-[#dcdcdc] ml-4 "
+                  placeholder="Hassan Cake"
+                />
+                <div className="mt-5 ml-4 mb-3">
+                  <h1 className="text-[#dcdcdc] text-medium">
+                    Card information
+                  </h1>
+                  <div className="flex items-center border border-[#dcdcdc] rounded-lg px-4 py-2 bg-black w-[368px] mt-2">
+                    <input
+                      type="text"
+                      placeholder="Card Number"
+                      className="flex-grow bg-black text-[#dcdcdc] placeholder-gray-500 focus:outline-none"
+                    />
+                    <div className="flex space-x-3">
+                      <input
+                        type="text"
+                        placeholder="MM / YY"
+                        className="w-[80px] bg-black text-[#dcdcdc] placeholder-gray-500 focus:outline-none"
+                      />
+                      <input
+                        type="text"
+                        placeholder="CVC"
+                        className="w-[60px] bg-black text-[#dcdcdc] placeholder-gray-500 focus:outline-none"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="border-[#dcdcdc] border-b pb-5 w-[400px]">
+                <h1 className="text-[#dcdcdc] text-bold mt-5 ml-4 mb-3 ">
+                  {" "}
+                  Contact information
+                </h1>
+                <h1 className="text-[#dcdcdc] text-bold mt-5 ml-4 mb-3 ">
+                  {" "}
+                  Country
+                </h1>
+                <Select>
+                  <SelectTrigger className="w-[330px] h-[50px] border border-[#dcdcdc] font-bold text-[#dcdcdc] w-[368px]  h-[50px] ml-4">
+                    <SelectValue placeholder="Monthly" />
+                  </SelectTrigger>
+                  <SelectContent className=" bg-black text-[#dcdcdc]">
+                    <SelectItem value="monthly">Pakistan</SelectItem>
+                    <SelectItem value="quaterly">Dubai</SelectItem>
+                    <SelectItem value="6months">United States</SelectItem>
+                    <SelectItem value="yearly">Germany</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              <Button
+                variant="outline"
+                className=" ml-5 mt-4 mb-4 h-[50px] w-[360px] text-s text-black bg-[#dcdcdc] border border-[#dcdcdc]  hover:text-[#black] hover:bg-pink-400 hover:scale-105 hover:border-[#dcdcdc] hover:translate-[-5px_-5px]  transition-shadow duration-200"
+              >
+                Apply
+              </Button>
+            </div>
           </div>
         </div>
       </div>

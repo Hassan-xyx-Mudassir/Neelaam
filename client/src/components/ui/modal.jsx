@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { useGlobalState } from "@/contexts/GlobalStateContext";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+
 export default function PlanDisplay() {
   const { text, price, plan, updateText, updatePrice, updatePlan } =
-    useGlobalState(); // Access global state
-  const [isModalOpen, setModalOpen] = useState(false); // Modal visibility state
-  const [tempPlan, setTempPlan] = useState(plan); // Temporary plan
-  const [tempPrice, setTempPrice] = useState(price); // Temporary price
-  const [tempText, setTempText] = useState(text); // Temporary text
+    useGlobalState();
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [tempPlan, setTempPlan] = useState(plan);
+  const [tempPrice, setTempPrice] = useState(price);
+  const [tempText, setTempText] = useState(text);
 
   const handlePlanChange = (selectedPlan) => {
     setTempPlan(selectedPlan);
@@ -62,7 +56,7 @@ export default function PlanDisplay() {
           {/* Plan Details */}
           <div className="w-[370px] h-[150px] border border-[#dcdcdc] rounded mt-1 bg-[#242423] shadow-[5px_5px_0px_white]  bg-[#242423]">
             <div className="w-max max-w-[200px] h-[40px] bg-black border border--[#dcdcdc] rounded-full mt-4 ml-4 mr-4 mb-2">
-              <h1 className="p-2 text-[#dcdcdc]">{text}</h1>
+              <h1 className="p-2 text-[#dcdcdc]">{tempText}</h1>
             </div>
 
             <h1 className="font-bold ml-4">Basic Access</h1>
