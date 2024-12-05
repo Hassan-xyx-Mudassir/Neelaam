@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './FAQ.css';
-import { Accordion } from '@/components/ui/accordion';
+//import { Accordion } from '@/components/ui/accordion';
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
