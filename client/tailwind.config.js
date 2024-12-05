@@ -1,4 +1,5 @@
 import { nextui } from "@nextui-org/react";
+import animationPlugin from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -23,7 +24,7 @@ export default {
         transparent: "transparent",
         current: "currentColor",
         primary: "#09090b",
-        secondary: "#ffffff",
+        secondary: "#27272a",
       },
       keyframes: {
         shine: {
@@ -32,9 +33,9 @@ export default {
         },
       },
       animation: {
-        shine: "shine 8s ease-in-out infinite",
+        shine: "shine 4s ease-in-out infinite",
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), nextui()],
+  plugins: [animationPlugin, nextui()],
 };

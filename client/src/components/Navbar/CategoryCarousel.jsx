@@ -24,7 +24,7 @@ import {
   GemIcon as Beauty,
   HeartPulse,
   Gift,
-  VibrateIcon as Volleyball,
+  Volleyball,
   Plane,
   Flower,
   PaintbrushIcon as Art,
@@ -55,8 +55,50 @@ const categories = [
   { name: "Others", icon: ShoppingCart },
 ];
 
+const contentColors = [
+  "group-hover:text-red-500",
+  "group-hover:text-blue-500",
+  "group-hover:text-orange-400",
+  "group-hover:text-amber-400",
+  "group-hover:text-lime-500",
+  "group-hover:text-green-500",
+  "group-hover:text-teal-400",
+  "group-hover:text-cyan-500",
+  "group-hover:text-indigo-400",
+  "group-hover:text-yellow-300",
+  "group-hover:text-violet-500",
+  "group-hover:text-fuchsia-400",
+  "group-hover:text-pink-400",
+  "group-hover:text-rose-500",
+  "group-hover:text-sky-500",
+  "group-hover:text-emerald-500",
+  "group-hover:text-slate-400",
+  "group-hover:text-purple-500",
+];
+
+const cardColors = [
+  "hover:bg-red-500/5",
+  "hover:bg-blue-500/5",
+  "hover:bg-orange-400/5",
+  "hover:bg-amber-400/5",
+  "hover:bg-lime-500/5",
+  "hover:bg-green-500/5",
+  "hover:bg-teal-400/5",
+  "hover:bg-cyan-500/5",
+  "hover:bg-indigo-400/5",
+  "hover:bg-yellow-300/5",
+  "hover:bg-violet-500/5",
+  "hover:bg-fuchsia-400/5",
+  "hover:bg-pink-400/5",
+  "hover:bg-rose-500/5",
+  "hover:bg-sky-500/5",
+  "hover:bg-emerald-500/5",
+  "hover:bg-slate-400/5",
+  "hover:bg-purple-500/5",
+];
+
 const CategoryCarousel = () => (
-  <div className="w-full px-10 sm:px-12 md:px-14 lg:px-16 xl:px-20 relative">
+  <div className="w-full px-16 lg:px-16 xl:px-20">
     <Carousel
       plugins={[
         Autoplay({
@@ -75,13 +117,31 @@ const CategoryCarousel = () => (
           return (
             <CarouselItem
               key={index}
-              className="pl-4 md:pl-5 lg:pl-6 basis-1/5 sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/10"
+              className="pl-4 md:pl-5 lg:pl-6 basis-1/4 sm:basis-1/5 md:basis-[12.5%] lg:basis-[10%] xl:basis-1/10"
             >
-              <Card className="bg-zinc-950 hover:bg-zinc-900 transition-colors duration-200 border-0">
+              <Card
+                className={`bg-zinc-950 ${
+                  cardColors[index % cardColors.length]
+                } transition-colors duration-200 border-0 group`}
+              >
                 <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 gap-1 text-white">
-                  <Icon strokeWidth="1" size={20} className="mb-1" />
-                  <span className="text-[10px] sm:text-xs text-center">
+                  <Icon
+                    strokeWidth="1"
+                    className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 mb-1 transition-colors duration-200 ${
+                      contentColors[index % contentColors.length]
+                    }`}
+                  />
+                  <span
+                    className={`text-[10px] sm:text-xs text-center transition-colors duration-200 ${
+                      contentColors[index % contentColors.length]
+                    }`}
+                  >
                     {category.name}
+                    {console.log(
+                      category.name,
+                      contentColors[index % contentColors.length],
+                      cardColors[index % cardColors.length]
+                    )}
                   </span>
                 </CardContent>
               </Card>
@@ -89,8 +149,8 @@ const CategoryCarousel = () => (
           );
         })}
       </CarouselContent>
-      <CarouselPrevious className="absolute -left-2 sm:-left-3 md:-left-4 top-1/2 -translate-y-1/2 bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
-      <CarouselNext className="absolute -right-2 sm:-right-3 md:-right-4 top-1/2 -translate-y-1/2 bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
+      <CarouselPrevious className="bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
+      <CarouselNext className="bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
     </Carousel>
   </div>
 );
