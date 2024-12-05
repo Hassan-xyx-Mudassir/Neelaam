@@ -1,10 +1,18 @@
-import Navbar from "./components/Navbar/Navbar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
+import { AppSidebar } from "@/components/app-sidebar"
+import  Navbar  from "./components/Navbar/Navbar";
 
 function App() {
   return (
-    <div className="font-roboto bg-zinc-950 min-h-screen">
-      <Navbar />
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main>
+        <SidebarTrigger />
+        
+        
+
+      </main>
+    </SidebarProvider>
   );
 }
 
