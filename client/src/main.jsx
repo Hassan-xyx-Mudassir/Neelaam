@@ -6,12 +6,12 @@ import "./index.css";
 import App from "./App.jsx";
 
 import Product from "./components/Product";
-
+import Payment from "./components/Payment";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <NextUIProvider>
       <GlobalStateProvider>
-        <Product></Product>
+        <Payment></Payment>
       </GlobalStateProvider>
     </NextUIProvider>
   </StrictMode>

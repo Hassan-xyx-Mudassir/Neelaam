@@ -1,7 +1,6 @@
-// src/contexts/GlobalStateContext.jsx
 import React, { createContext, useState, useContext } from "react";
 
-// Create a Context for the global state
+// Create the context
 const GlobalStateContext = createContext();
 
 // Custom hook to use the context easily
@@ -11,13 +10,21 @@ export const useGlobalState = () => useContext(GlobalStateContext);
 export const GlobalStateProvider = ({ children }) => {
   const [text, setText] = useState("$97 a month");
   const [price, setPrice] = useState(97);
+  const [plan, setPlan] = useState("Monthly"); // Add state for plan
 
+  // Function to update text
   const updateText = (newText) => {
     setText(newText);
   };
 
+  // Function to update price
   const updatePrice = (newPrice) => {
     setPrice(newPrice);
+  };
+
+  // Function to update plan
+  const updatePlan = (newPlan) => {
+    setPlan(newPlan);
   };
 
   return (
@@ -25,8 +32,10 @@ export const GlobalStateProvider = ({ children }) => {
       value={{
         text,
         price,
+        plan, // Provide the 'plan' state
         updateText,
         updatePrice,
+        updatePlan, // Provide the function to update 'plan'
       }}
     >
       {children}

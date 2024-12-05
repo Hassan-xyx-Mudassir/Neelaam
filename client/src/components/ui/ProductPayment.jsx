@@ -12,26 +12,32 @@ import { AiOutlineLink } from "react-icons/ai";
 import { useGlobalState } from "@/contexts/GlobalStateContext"; // Import the custom hook
 
 export default function ProductPayment() {
-  const { text, price, updateText, updatePrice } = useGlobalState(); // Use global state
+  const { text, price, updateText, updatePrice, plan, updatePlan } =
+    useGlobalState(); // Use global state
   const [selectedPlan, setSelectedPlan] = useState("monthly");
 
   const handlePlanChange = (value) => {
     setSelectedPlan(value);
     let newPrice = 0;
     let newText = "";
+    let newPlan = "";
 
     if (value === "monthly") {
       newPrice = 97;
       newText = `$${newPrice} a month`;
+      newPlan = "1 month";
     } else if (value === "quaterly") {
       newPrice = 257;
       newText = `$${newPrice} every 3 months`;
+      newPlan = "quaterly";
     } else if (value === "6months") {
       newPrice = 497;
       newText = `$${newPrice} every 6 months`;
+      newPlan = "6 months";
     } else if (value === "yearly") {
       newPrice = 987;
       newText = `$${newPrice} every year`;
+      newPlan = "yearly";
     }
 
     updatePrice(newPrice); // Update global price
