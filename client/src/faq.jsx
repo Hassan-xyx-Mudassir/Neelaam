@@ -11,35 +11,31 @@ const Faq = () => {
 
   const faqData = [
     {
-      category: "PRODUCT INFO",
+      category: "USING NEELAAM",
       questions: [
-        { question: "CAN I BUY LIQUID DEATH WHOLESALE?", answer: "Yes, you can buy it wholesale through our distributor network." },
-        { question: "WHERE CAN I BUY LIQUID DEATH?", answer: "You can find Liquid Death in many retailers and online stores." },
-        { question: "WHERE CAN I BUY LIQUID DEATH ICED TEA?", answer: "Liquid Death Iced Tea is available at select retailers." },
-        { question: "ARE YOUR CANS RECYCLABLE?", answer: "Yes, all our cans are 100% recyclable." },
-        { question: "IS THERE CAFFEINE IN LIQUID DEATH?", answer: "Only our iced tea contains caffeine." },
-        { question: "IS LIQUID DEATH SAFE FOR CHILDREN?", answer: "Yes, it is safe for children, though the iced tea has caffeine." },
-        { question: "IS LIQUID DEATH GLUTEN FREE AND VEGAN?", answer: "Yes, Liquid Death is both gluten-free and vegan." },
-        { question: "I'M PREGNANT. CAN I DRINK LIQUID DEATH MOUNTAIN WATER?", answer: "Consult your doctor before consuming any beverage while pregnant." },
-        { question: "WHAT IS THE SHELF LIFE OF LIQUID DEATH?", answer: "The shelf life is generally 2 years from production." }
-      ]
+        { question: "HOW DO I REGISTER ON NEELAAM?", answer: "Click on the 'Sign Up' button, fill out your details, and verify your account via email or SMS." },
+        { question: "CAN I SELL ITEMS ON NEELAAM?", answer: "Yes, registered users can list items for auction or fixed-price sales." },
+        { question: "IS NEELAAM AVAILABLE IN URDU?", answer: "Yes, you can switch to Urdu from the language settings in your account." },
+        { question: "HOW DO I REPORT A USER OR ITEM?", answer: "Use the 'Report' button on the user’s profile or item listing, and our team will review the case." },
+        { question: "WHAT HAPPENS IF I WIN AN AUCTION?", answer: "You’ll receive a notification with the seller's details and payment instructions to finalize your purchase." },
+      ],
     },
     {
-      category: "ORDERING & SHIPPING",
+      category: "PAYMENTS & SHIPPING",
       questions: [
-        { question: "HOW CAN I PLACE AN ORDER?", answer: "You can place an order directly through our website." },
-        { question: "WHAT SHIPPING OPTIONS DO YOU OFFER?", answer: "We offer standard and expedited shipping." },
-        { question: "DO YOU SHIP INTERNATIONALLY?", answer: "Yes, we ship worldwide." },
-        { question: "HOW LONG DOES SHIPPING TAKE?", answer: "Shipping takes 3-5 business days for domestic orders." }
-      ]
+        { question: "WHAT PAYMENT OPTIONS ARE AVAILABLE?", answer: "We support local payment methods, including Easypaisa, JazzCash, and bank transfers." },
+        { question: "DOES NEELAAM OFFER CASH ON DELIVERY (COD)?", answer: "Yes, COD is available for eligible listings. Check the seller’s terms before bidding." },
+        { question: "HOW ARE SHIPPING COSTS CALCULATED?", answer: "Shipping costs are determined by the seller based on the item’s weight and delivery location." },
+        { question: "CAN I TRACK MY ORDER?", answer: "If the seller provides a tracking ID, you can follow your shipment's progress through the courier’s website." },
+      ],
     },
     {
       category: "RETURNS & REFUNDS",
       questions: [
-        { question: "WHAT IS YOUR RETURN POLICY?", answer: "You can return items within 30 days for a full refund." },
-        { question: "HOW DO I REQUEST A REFUND?", answer: "Please contact our customer service team for refund requests." },
-        { question: "CAN I EXCHANGE AN ITEM?", answer: "Yes, exchanges are accepted within 30 days of purchase." }
-      ]
+        { question: "WHAT IS NEELAAM’S RETURN POLICY?", answer: "Returns are handled by individual sellers. Check the return policy on the item listing." },
+        { question: "HOW DO I REQUEST A REFUND?", answer: "Contact the seller directly via the messaging system. If unresolved, raise a dispute with our support team." },
+        { question: "CAN I CANCEL A BID?", answer: "Bids cannot be canceled. Make sure you're committed before placing a bid." },
+      ],
     }
   ];
 
