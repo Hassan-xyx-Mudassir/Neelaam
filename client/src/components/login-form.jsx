@@ -27,9 +27,16 @@ export function LoginForm() {
     setError(null);
 
     try {
-      const response = await axios.put('google.com', { email, password });
-      console.log('Login successful:', response.data);
-      // Redirect or handle successful login
+      const response = await axios.post('http://localhost:3000/auth/login', { email, password }, { headers: {'Content-Type': 'application/json',},} );
+      
+      const { token, uid } = response.data;
+      localStorage.setItem('token', token);
+      localStorage.setItem('uid', uid);
+
+      console.log('Login successful');
+
+      // Put redirect code here
+
     } catch (err) {
       console.error('Error during login:', err);
       setError(err.response?.data?.message || 'An error occurred. Please try again.');

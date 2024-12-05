@@ -28,7 +28,7 @@ export function SignupForm() {
     setError(null);
 
     try {
-      const response = await axios.post('google.com', { email, password });
+      const response = await axios.post('http://localhost:3000/auth/register', { email, password }, { headers: {'Content-Type': 'application/json',},} );
       console.log('Signup successful:', response.data);
     } catch (err) {
       console.error('Error during Signup:', err);
@@ -71,7 +71,7 @@ export function SignupForm() {
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? 'Signing in...' : 'Signup'}
           </Button>
-          {error && <p className=" text-1xl self-center">{error}</p>}
+          {error && <p className=" text-1x1 self-center">{error}</p>}
           <Button variant="outline" className="w-full">
             Signup with Google
           </Button>
