@@ -89,13 +89,13 @@ const SearchBar = () => {
           </Kbd>
         </Label>
       </div>
-      <Tooltip showArrow={true} content="Search">
+      <Tooltip showArrow={true} content="Search" className="text-[#000]">
         <Button variant="gooeyRight" className="border hover:bg-zinc-900">
           <Search className="h-3 w-3 text-white" />
         </Button>
       </Tooltip>
       <Sheet>
-        <Tooltip showArrow={true} content="Filter">
+        <Tooltip showArrow={true} content="Filter" className="text-[#000]">
           <SheetTrigger asChild>
             <Button
               variant="gooeyRight"

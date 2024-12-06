@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import Footer from "@/components/Footer/Footer";
 import "./FAQ.css";
 
 const faqData = [
@@ -90,7 +89,7 @@ const FAQ = () => {
 
   return (
     <div className="bg-zinc-950">
-      <div className="parent bg-zinc-950 mb-10">
+      <div className="parent bg-zinc-950">
         <Navbar />
         <div className="bg-zinc-950 flex flex-col justify-center items-center mt-10 sm:mt-20">
           <div className="text-2xl sm:text-4xl font-medium">FAQs</div>
@@ -122,7 +121,6 @@ const FAQ = () => {
           ))}
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

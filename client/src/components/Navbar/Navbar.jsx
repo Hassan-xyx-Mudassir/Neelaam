@@ -53,7 +53,7 @@ const NavButtons = ({ setOpen }) => {
 const NavSheetButtons = ({ setOpen }) => {
   return (
     <div className="flex flex-col mt-5">
-      <Link to="faq">
+      <Link className="flex flex-col" to="faq">
         <Button
           variant="ghost"
           className="flex justify-between px-6 py-1 hover:bg-zinc-900"
