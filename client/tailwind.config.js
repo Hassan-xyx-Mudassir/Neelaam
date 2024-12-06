@@ -3,7 +3,7 @@ import animationPlugin from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
 export default {
-  darkMode: ["class"],
+  darkMode: ["class"], // Enables dark mode with class strategy
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -14,28 +14,41 @@ export default {
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],
         kufam: ["Kufam", "sans-serif"],
+        sans: ["Arial", "Helvetica", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-     colors: {
-  			transparent: 'transparent',
-  			current: 'currentColor',
-  			primary: '#09090b',
-  			secondary: '#ffffff',
-  			sidebar: {
-  				DEFAULT: 'hsl(var(--sidebar-background))',
-  				foreground: 'hsl(var(--sidebar-foreground))',
-  				primary: 'hsl(var(--sidebar-primary))',
-  				'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-  				accent: 'hsl(var(--sidebar-accent))',
-  				'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-  				border: 'hsl(var(--sidebar-border))',
-  				ring: 'hsl(var(--sidebar-ring))'
-  			}
-  		},
+
+      spacing: {
+        15: "3.75rem", // Fixed: Added unit "rem"
+        20: "5rem",
+        25: "6.25rem", // 100px
+        30: "7.5rem", // 120px
+        35: "8.75rem", // 140px
+        40: "10rem", // 160px
+        45: "11.25rem", // 180px
+        50: "12.5rem", // 200px
+      },
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        primary: "#09090b",
+        secondary: "#ffffff",
+        customTeal: "#36a9ae",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
       keyframes: {
         shine: {
           from: {
