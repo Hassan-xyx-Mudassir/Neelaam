@@ -6,13 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-// import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import axios from "axios";
 
-export function LoginForm() {
+export function LoginForm({ handleLogin, setOpen }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -36,6 +35,8 @@ export function LoginForm() {
       localStorage.setItem("uid", uid);
 
       console.log("Login successful");
+      handleLogin(email);
+      setOpen(false);
 
       // Put redirect code here
     } catch (err) {
@@ -83,12 +84,6 @@ export function LoginForm() {
               >
                 Password
               </Label>
-              {/* <Link
-                to="/signup"
-                className="ml-auto inline-block text-sm underline"
-              >
-                Forgot your password?
-              </Link> */}
             </div>
             <Input
               id="password"
@@ -108,14 +103,8 @@ export function LoginForm() {
           >
             {loading ? "Logging in..." : "Login"}
           </Button>
-          {error && <p className="text-1xl self-center ">{error}</p>}
+          {error && <p className="text-1xl self-center text-white">{error}</p>}
         </form>
-        <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{""}
-          {/* <Link to="/signup" className="underline">
-            Sign up
-          </Link> */}
-        </div>
       </CardContent>
     </Card>
   );

@@ -25,7 +25,7 @@ import {
   GemIcon as Beauty,
   HeartPulse,
   Gift,
-  VibrateIcon as Volleyball,
+  Volleyball,
   Plane,
   Flower,
   PaintbrushIcon as Art,
