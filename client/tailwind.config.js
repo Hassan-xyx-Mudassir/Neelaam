@@ -1,7 +1,8 @@
-const { nextui } = require("@nextui-org/react");
+import { nextui } from "@nextui-org/react";
+import animationPlugin from "tailwindcss-animate";
 
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   darkMode: ["class"], // Enables dark mode with class strategy
   content: [
     "./index.html",
@@ -10,14 +11,17 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        roboto: ["Roboto", "sans-serif"],
+        kufam: ["Kufam", "sans-serif"],
+        sans: ["Arial", "Helvetica", "sans-serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      colors: {
-        customTeal: "#36a9ae", // Add your custom teal color
-      },
+
       spacing: {
         15: "3.75rem", // Fixed: Added unit "rem"
         20: "5rem",
@@ -28,13 +32,60 @@ module.exports = {
         45: "11.25rem", // 180px
         50: "12.5rem", // 200px
       },
-      fontFamily: {
-        sans: ["Arial", "Helvetica", "sans-serif"], // Added custom font family
+      colors: {
+        transparent: "transparent",
+        current: "currentColor",
+        primary: "#09090b",
+        secondary: "#ffffff",
+        customTeal: "#36a9ae",
+        sidebar: {
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
+        },
+      },
+      keyframes: {
+        shine: {
+          from: {
+            backgroundPosition: "200% 0",
+          },
+          to: {
+            backgroundPosition: "-200% 0",
+            "background-position": "0% 0%",
+          },
+          "0%": {
+            "background-position": "0% 0%",
+          },
+          "50%": {
+            "background-position": "100% 100%",
+          },
+        },
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+      },
+      animation: {
+        shine: "shine var(--duration) infinite linear",
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
       },
     },
   },
   plugins: [
-    require("tailwindcss-animate"), // Tailwind CSS Animate Plugin
-    nextui(), // NextUI Plugin
+    animationPlugin,
+    nextui(),
+    require("tailwind-plugin-typed")({
+      delimiter: ";",
+      typeLetterDuration: 0.1,
+      pauseAfterWordDuration: 2,
+      deleteLetterDuration: 0.05,
+      pauseAfterDeletionDuration: 1,
+    }),
   ],
 };
