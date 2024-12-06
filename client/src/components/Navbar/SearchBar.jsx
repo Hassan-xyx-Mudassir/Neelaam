@@ -66,7 +66,6 @@ const SearchBar = () => {
     if (e.ctrlKey && e.key == "k") {
       if (document.getElementById("search") !== document.activeElement) {
         e.preventDefault();
-        console.log("Search is not in focus");
         document.getElementById("search").focus();
       }
     }
@@ -143,7 +142,6 @@ const SearchBar = () => {
                 classNames={{ labelWrapper: "mb-3" }}
                 className="max-w-md"
               />
-              {console.log("Range: ", range)}
             </AccordionItem>
             <AccordionItem
               key="rating"
@@ -188,7 +186,6 @@ const SearchBar = () => {
                   {createStars(1)}
                 </Checkbox>
               </CheckboxGroup>
-              {console.log("Rating: ", rating)}
             </AccordionItem>
             <AccordionItem
               key="tags"

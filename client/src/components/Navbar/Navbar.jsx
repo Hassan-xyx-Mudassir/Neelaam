@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Avatar, User, Tooltip } from "@nextui-org/react";
+import {
+  Avatar,
+  User,
+  Tooltip,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+} from "@nextui-org/react";
 import { Link } from "react-router-dom";
-import { Menu, LogIn, CircleHelp, PlusCircle } from "lucide-react";
+import { Menu, LogIn, CircleHelp, PlusCircle, LogOut } from "lucide-react";
 import SearchBar from "./SearchBar";
 import CategoryCarousel from "./CategoryCarousel";
 import { LoginForm } from "../LoginForm/LoginForm";
@@ -83,63 +91,112 @@ const NavSheetButtons = ({ setOpen }) => {
   );
 };
 
-const ShowAvatar = () => {
+const ShowAvatar = ({ userData, handleLogout }) => {
+  const iconClasses =
+    "text-xl text-default-500 pointer-events-none flex-shrink-0 text-red-900 hover:text-white";
+
   return (
     <div className="flex gap-10">
-      <Button variant="gooeyLeft" className="text-xs w-full text-white">
-        FAQ
-      </Button>
+      <Link to="faq">
+        <Button variant="gooeyLeft" className="text-xs w-full text-white">
+          FAQ
+        </Button>
+      </Link>
       <Tooltip
+        className="text-black"
         showArrow={true}
         placement="bottom-end"
         content={
           <div className="px-1 py-2">
-            <div className="text-small font-bold">Jane Doe</div>
+            <div className="text-small font-bold">{userData}</div>
             <div className="text-tiny">Signed in</div>
           </div>
         }
       >
         <div>
-          <Avatar
-            classNames={{
-              base: "ring transition-all duration-300 hover:ring-green-400",
-            }}
-            showFallback
-            name="Jane"
-            src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
-          />
+          <Dropdown className="bg-zinc-800">
+            <DropdownTrigger>
+              <Avatar
+                classNames={{
+                  base: "ring transition-all duration-300 hover:ring-green-400",
+                }}
+                showFallback
+                name={userData}
+                src="https://i.pravatar.cc/150?u=a042581f4e29026704d"
+              />
+            </DropdownTrigger>
+            <DropdownMenu className="bg-zinc-800" aria-label="Static Actions">
+              <DropdownItem
+                startContent={<LogOut className={iconClasses} />}
+                key="delete"
+                className="text-danger"
+                color="danger"
+                classNames={{ base: "hover:text-white" }}
+                onClick={() => {
+                  handleLogout();
+                  console.log("Logged out");
+                }}
+              >
+                Logout
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
         </div>
       </Tooltip>
     </div>
   );
 };
 
-const ShowAvatarOnSheet = () => {
+const ShowAvatarOnSheet = ({ userData, handleLogout }) => {
+  const iconClasses =
+    "text-xl text-default-500 pointer-events-none flex-shrink-0 text-red-900 hover:text-white";
+
   return (
     <div className="flex flex-col mt-10">
       <div className="mb-3">
-        <User
-          size="lg"
-          name="Jane Doe"
-          description="Signed in"
-          classNames={{ wrapper: "ml-2" }}
-          avatarProps={{
-            src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
-            showFallback: true,
-            classNames: {
-              base: "ring transition-all duration-300 hover:ring-green-400",
-            },
-          }}
-        />
+        <Dropdown className="bg-zinc-800">
+          <DropdownTrigger>
+            <User
+              size="lg"
+              name={userData}
+              description="Signed in"
+              classNames={{ wrapper: "ml-2" }}
+              avatarProps={{
+                src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
+                showFallback: true,
+                classNames: {
+                  base: "ring transition-all duration-300 hover:ring-green-400",
+                },
+              }}
+            />
+          </DropdownTrigger>
+          <DropdownMenu className="bg-zinc-800" aria-label="Static Actions">
+            <DropdownItem
+              startContent={<LogOut className={iconClasses} />}
+              key="delete"
+              className="text-danger"
+              color="danger"
+              classNames={{ base: "hover:text-white" }}
+              onClick={() => {
+                handleLogout();
+                console.log("Logged out");
+              }}
+            >
+              Logout
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
       <Separator className="bg-zinc-900 mb-3 mt-1" />
-      <Button
-        variant="ghost"
-        className="flex justify-between px-[16px] py-6 hover:bg-zinc-900 "
-      >
-        <span>FAQ</span>
-        <CircleHelp />
-      </Button>
+      <Link className="flex flex-col" to="faq">
+        <Button
+          variant="ghost"
+          className="flex justify-between px-[16px] py-6 hover:bg-zinc-900 "
+        >
+          <span>FAQ</span>
+          <CircleHelp />
+        </Button>
+      </Link>
       <Separator className="bg-zinc-900 mb-3 mt-1" />
     </div>
   );
@@ -148,11 +205,33 @@ const ShowAvatarOnSheet = () => {
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
-  const [authenticated, setAuthenticated] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    Boolean(localStorage.getItem("isLoggedIn"))
+  );
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userData"))
+  );
 
-  const handleClick = () => {
-    setAuthenticated(true);
+  const handleLogin = (data) => {
+    setIsLoggedIn(true);
+    setUserData(data);
+    localStorage.setItem("isLoggedIn", true);
+    localStorage.setItem("userEmail", JSON.stringify(data));
   };
+
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+    setUserData(null);
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("userData");
+  };
+
+  useEffect(() => {
+    const storedUserData = localStorage.getItem("userData");
+    if (storedUserData) {
+      setUserData(JSON.parse(storedUserData));
+    }
+  }, []);
 
   return (
     <div className="flex flex-col items-center gap-2.5">
@@ -165,12 +244,12 @@ const Navbar = () => {
             </TabsList>
             <TabsContent value="login">
               <div>
-                <LoginForm />
+                <LoginForm handleLogin={handleLogin} setOpen={setOpen} />
               </div>
             </TabsContent>
             <TabsContent value="signup">
               <div>
-                <SignupForm />
+                <SignupForm setOpen={setOpen} />
               </div>
             </TabsContent>
           </Tabs>
@@ -191,10 +270,13 @@ const Navbar = () => {
               side="right"
               className="w-[300px] sm:hidden bg-zinc-950 text-white"
             >
-              {!authenticated ? (
+              {!isLoggedIn ? (
                 <NavSheetButtons setOpen={setOpen} />
               ) : (
-                <ShowAvatarOnSheet />
+                <ShowAvatarOnSheet
+                  handleLogout={handleLogout}
+                  userData={userData}
+                />
               )}
             </SheetContent>
           </Sheet>
@@ -203,7 +285,11 @@ const Navbar = () => {
           <SearchBar />
         </div>
         <div className="hidden sm:block">
-          {!authenticated ? <NavButtons setOpen={setOpen} /> : <ShowAvatar />}
+          {!isLoggedIn ? (
+            <NavButtons setOpen={setOpen} />
+          ) : (
+            <ShowAvatar handleLogout={handleLogout} userData={userData} />
+          )}
         </div>
       </nav>
       <Separator className="bg-zinc-900" />
