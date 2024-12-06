@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -65,6 +64,7 @@ export function SignupForm() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="text-white"
             />
           </div>
           <div className="grid gap-2">
@@ -81,6 +81,7 @@ export function SignupForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="text-white"
             />
           </div>
           <Button
@@ -91,14 +92,8 @@ export function SignupForm() {
           >
             {loading ? "Signing in..." : "Signup"}
           </Button>
-          {error && <p className="text-1x1 self-center">{error}</p>}
+          {error && <p className="text-1x1 self-center text-white">{error}</p>}
         </form>
-        <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{""}
-          {/* <Link to="/login" className="underline">
-            Login
-          </Link> */}
-        </div>
       </CardContent>
     </Card>
   );

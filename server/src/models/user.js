@@ -5,14 +5,14 @@ var bcrypt = require("bcrypt");
 var userSchema = new Schema({
   email: { type: String, required: true },
   password: { type: String, required: true },
-  created_at: Date
+  created_at: Date,
 });
 
-userSchema.methods.encryptPassword = function(password) {
+userSchema.methods.encryptPassword = function (password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10), null);
 };
 
-userSchema.methods.validPassword = function(password) {
+userSchema.methods.validPassword = function (password) {
   return bcrypt.compareSync(password, this.password);
 };
 
