@@ -1,16 +1,17 @@
 import { useState } from "react";
-import logo from "../../assets/logo.svg";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, User, Tooltip } from "@nextui-org/react";
+import { Link } from "react-router-dom";
 import { Menu, LogIn, CircleHelp, PlusCircle } from "lucide-react";
 import SearchBar from "./SearchBar";
 import CategoryCarousel from "./CategoryCarousel";
 import { LoginForm } from "../LoginForm/LoginForm";
 import { SignupForm } from "../SignupForm/SignupForm";
+import logo from "../../assets/logo.svg";
 
 const Logo = () => (
   <div className="flex items-center gap-2">
@@ -26,9 +27,11 @@ const Logo = () => (
 const NavButtons = ({ setOpen }) => {
   return (
     <div className="flex sm:flex-row gap-2">
-      <Button variant="gooeyLeft" className="text-xs w-full ">
-        FAQ
-      </Button>
+      <Link to="faq">
+        <Button variant="gooeyLeft" className="text-xs w-full ">
+          FAQ
+        </Button>
+      </Link>
       <Button
         variant="gooeyLeft"
         className="text-xs w-full "
@@ -50,13 +53,15 @@ const NavButtons = ({ setOpen }) => {
 const NavSheetButtons = ({ setOpen }) => {
   return (
     <div className="flex flex-col mt-5">
-      <Button
-        variant="ghost"
-        className="flex justify-between px-6 py-1 hover:bg-zinc-900"
-      >
-        <span>FAQ</span>
-        <CircleHelp />
-      </Button>
+      <Link to="faq">
+        <Button
+          variant="ghost"
+          className="flex justify-between px-6 py-1 hover:bg-zinc-900"
+        >
+          <span>FAQ</span>
+          <CircleHelp />
+        </Button>
+      </Link>
       <Separator className="bg-zinc-900 mb-3 mt-1" />
       <Button
         className="flex justify-between px-6 py-1 hover:bg-zinc-900"
@@ -145,9 +150,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
-  // const handleClick = () => {
-  //   setAuthenticated(true);
-  // };
+  const handleClick = () => {
+    setAuthenticated(true);
+  };
 
   return (
     <div className="flex flex-col items-center gap-2.5">
@@ -173,7 +178,9 @@ const Navbar = () => {
       </Dialog>
       <nav className="w-full flex flex-col sm:flex-row justify-between py-3 pb-0 px-5 text-white sm:gap-8">
         <div className="flex justify-between items-center w-full sm:w-auto mb-4 sm:mb-0">
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" className="sm:hidden p-0">
