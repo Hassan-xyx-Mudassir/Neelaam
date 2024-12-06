@@ -79,12 +79,6 @@ export default {
   plugins: [
     animationPlugin,
     nextui(),
-    require("tailwind-plugin-typed")({
-      delimiter: ";",
-      typeLetterDuration: 0.1,
-      pauseAfterWordDuration: 2,
-      deleteLetterDuration: 0.05,
-      pauseAfterDeletionDuration: 1,
-    }),
+    
   ],
 };
