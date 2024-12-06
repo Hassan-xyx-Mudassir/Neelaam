@@ -8,9 +8,6 @@ function App() {
       <AppSidebar />
       <main>
         <SidebarTrigger />
-        
-        
-
       </main>
     </SidebarProvider>
   );

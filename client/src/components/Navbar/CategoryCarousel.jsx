@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -55,44 +56,111 @@ const categories = [
   { name: "Others", icon: ShoppingCart },
 ];
 
-const CategoryCarousel = () => (
-  <div className="w-full px-10 sm:px-12 md:px-14 lg:px-16 xl:px-20 relative">
-    <Carousel
-      plugins={[
-        Autoplay({
-          delay: 3000,
-        }),
-      ]}
-      opts={{
-        align: "start",
-        loop: true,
-      }}
-      className="w-full"
-    >
-      <CarouselContent className="-ml-1 md:-ml-2 lg:-ml-3">
-        {categories.map((category, index) => {
-          const Icon = category.icon;
-          return (
-            <CarouselItem
-              key={index}
-              className="pl-4 md:pl-5 lg:pl-6 basis-1/5 sm:basis-1/6 md:basis-1/7 lg:basis-1/8 xl:basis-1/10"
-            >
-              <Card className="bg-zinc-950 hover:bg-zinc-900 transition-colors duration-200 border-0">
-                <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 gap-1 text-white">
-                  <Icon strokeWidth="1" size={20} className="mb-1" />
-                  <span className="text-[10px] sm:text-xs text-center">
-                    {category.name}
-                  </span>
-                </CardContent>
-              </Card>
-            </CarouselItem>
-          );
-        })}
-      </CarouselContent>
-      <CarouselPrevious className="absolute -left-2 sm:-left-3 md:-left-4 top-1/2 -translate-y-1/2 bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
-      <CarouselNext className="absolute -right-2 sm:-right-3 md:-right-4 top-1/2 -translate-y-1/2 bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
-    </Carousel>
-  </div>
-);
+const contentColors = [
+  "text-red-500",
+  "text-blue-500",
+  "text-orange-400",
+  "text-amber-400",
+  "text-lime-500",
+  "text-green-500",
+  "text-teal-400",
+  "text-cyan-500",
+  "text-indigo-400",
+  "text-yellow-300",
+  "text-violet-500",
+  "text-fuchsia-400",
+  "text-pink-400",
+  "text-rose-500",
+  "text-sky-500",
+  "text-emerald-500",
+  "text-slate-400",
+  "text-purple-500",
+];
+
+const cardColors = [
+  "bg-red-500/5",
+  "bg-blue-500/5",
+  "bg-orange-400/5",
+  "bg-amber-400/5",
+  "bg-lime-500/5",
+  "bg-green-500/5",
+  "bg-teal-400/5",
+  "bg-cyan-500/5",
+  "bg-indigo-400/5",
+  "bg-yellow-300/5",
+  "bg-violet-500/5",
+  "bg-fuchsia-400/5",
+  "bg-pink-400/5",
+  "bg-rose-500/5",
+  "bg-sky-500/5",
+  "bg-emerald-500/5",
+  "bg-slate-400/5",
+  "bg-purple-500/5",
+];
+
+const CategoryCarousel = () => {
+  const [selectedIndex, setSelectedIndex] = useState();
+
+  return (
+    <div className="w-full px-16 lg:px-16 xl:px-20">
+      <Carousel
+        plugins={[
+          Autoplay({
+            delay: 3000,
+          }),
+        ]}
+        opts={{
+          align: "start",
+          loop: true,
+        }}
+        className="w-full"
+      >
+        <CarouselContent className="-ml-1 md:-ml-2 lg:-ml-3">
+          {categories.map((category, index) => {
+            const Icon = category.icon;
+            const contentColor = contentColors[index % contentColors.length];
+            const cardColor = cardColors[index % cardColors.length];
+
+            return (
+              <CarouselItem
+                key={index}
+                className="pl-4 md:pl-5 lg:pl-6 basis-1/4 sm:basis-1/5 md:basis-[12.5%] lg:basis-[10%] xl:basis-1/10"
+              >
+                <Card
+                  className={`bg-zinc-950 transition-colors duration-200 border-0 group cursor-pointer ${
+                    selectedIndex === index ? cardColor : `hover:${cardColor}`
+                  }`}
+                  onClick={() => setSelectedIndex(index)}
+                >
+                  <CardContent className="flex flex-col items-center justify-center p-2 sm:p-3 md:p-4 gap-1 text-white">
+                    <Icon
+                      strokeWidth="1"
+                      className={`h-6 w-6 md:h-7 md:w-7 lg:h-8 lg:w-8 mb-1 transition-colors duration-200 ${
+                        selectedIndex === index
+                          ? contentColor
+                          : `text-white group-hover:${contentColor}`
+                      }`}
+                    />
+                    <span
+                      className={`text-[10px] sm:text-xs text-center transition-colors duration-200 ${
+                        selectedIndex === index
+                          ? contentColor
+                          : `text-white group-hover:${contentColor}`
+                      }`}
+                    >
+                      {category.name}
+                    </span>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            );
+          })}
+        </CarouselContent>
+        <CarouselPrevious className="bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
+        <CarouselNext className="bg-zinc-950 hover:bg-zinc-900 hover:text-white text-white border-[#18181b]" />
+      </Carousel>
+    </div>
+  );
+};
 
 export default CategoryCarousel;
