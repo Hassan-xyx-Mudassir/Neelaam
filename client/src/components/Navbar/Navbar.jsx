@@ -9,6 +9,8 @@ import { Avatar, User, Tooltip } from "@nextui-org/react";
 import { Menu, LogIn, CircleHelp, PlusCircle } from "lucide-react";
 import SearchBar from "./SearchBar";
 import CategoryCarousel from "./CategoryCarousel";
+import { LoginForm } from "../LoginForm/LoginForm";
+import { SignupForm } from "../SignupForm/SignupForm";
 
 const Logo = () => (
   <div className="flex items-center gap-2">
@@ -143,9 +145,9 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
-  const handleClick = () => {
-    setAuthenticated(true);
-  };
+  // const handleClick = () => {
+  //   setAuthenticated(true);
+  // };
 
   return (
     <div className="flex flex-col items-center gap-2.5">
@@ -157,23 +159,13 @@ const Navbar = () => {
               <TabsTrigger value="signup">Signup</TabsTrigger>
             </TabsList>
             <TabsContent value="login">
-              <div className="flex justify-center items-center p-5">
-                <Button
-                  className="bg-white text-black hover:bg-neutral-300"
-                  onClick={handleClick}
-                >
-                  Access
-                </Button>
+              <div>
+                <LoginForm />
               </div>
             </TabsContent>
             <TabsContent value="signup">
-              <div className="flex justify-center items-center p-5">
-                <Button
-                  onClick={handleClick}
-                  className="bg-white text-black hover:bg-neutral-300"
-                >
-                  Access
-                </Button>
+              <div>
+                <SignupForm />
               </div>
             </TabsContent>
           </Tabs>
