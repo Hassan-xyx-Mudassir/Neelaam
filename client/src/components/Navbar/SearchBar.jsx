@@ -66,7 +66,6 @@ const SearchBar = () => {
     if (e.ctrlKey && e.key == "k") {
       if (document.getElementById("search") !== document.activeElement) {
         e.preventDefault();
-        console.log("Search is not in focus");
         document.getElementById("search").focus();
       }
     }
@@ -89,13 +88,13 @@ const SearchBar = () => {
           </Kbd>
         </Label>
       </div>
-      <Tooltip showArrow={true} content="Search">
+      <Tooltip showArrow={true} content="Search" className="text-[#000]">
         <Button variant="gooeyRight" className="border hover:bg-zinc-900">
           <Search className="h-3 w-3 text-white" />
         </Button>
       </Tooltip>
       <Sheet>
-        <Tooltip showArrow={true} content="Filter">
+        <Tooltip showArrow={true} content="Filter" className="text-[#000]">
           <SheetTrigger asChild>
             <Button
               variant="gooeyRight"
@@ -143,7 +142,6 @@ const SearchBar = () => {
                 classNames={{ labelWrapper: "mb-3" }}
                 className="max-w-md"
               />
-              {console.log("Range: ", range)}
             </AccordionItem>
             <AccordionItem
               key="rating"
@@ -188,7 +186,6 @@ const SearchBar = () => {
                   {createStars(1)}
                 </Checkbox>
               </CheckboxGroup>
-              {console.log("Rating: ", rating)}
             </AccordionItem>
             <AccordionItem
               key="tags"

@@ -4,9 +4,9 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 const routes = require("./routes");
-const cors = require("cors")
+const cors = require("cors");
 
-//MongoDB config
+// MongoDB config
 require("./utils/db");
 
 const app = express();
@@ -19,7 +19,6 @@ app.use(logger("dev"));
 app.use(cors());
 
 app.use("/", routes);
-
 
 app.listen(port, () => {
   console.log(`Listening on port ${process.env.PORT}`);

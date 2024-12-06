@@ -5,4 +5,5 @@ const router = express.Router();
 
 router.use("/auth", authRoutes);
 router.use("/product", productRoutes);
+
 module.exports = router;
