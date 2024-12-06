@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './FAQ.css';
-//import { Accordion } from '@/components/ui/accordion';
 
 const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -36,46 +35,76 @@ const Faq = () => {
         { question: "HOW DO I REQUEST A REFUND?", answer: "Contact the seller directly via the messaging system. If unresolved, raise a dispute with our support team." },
         { question: "CAN I CANCEL A BID?", answer: "Bids cannot be canceled. Make sure you're committed before placing a bid." },
       ],
-    }
+    },
   ];
 
-  return (<>
-    <div className="parent">
-        
-     <header className="faq-header">
-        <div className="brand-name">Neelaam</div>
-        <div className="header-icons">
-          <div className="icon">👤</div>
-          <div className="icon">🛒</div>
-          <div className="icon">❤️</div>
-        </div>
-      </header>   
-    <div className="faq-container">
-
-      <div className="faq-heading">FAQs</div>
-
-      {faqData.map((category, index) => (
-        <div key={index} className="faq-category">
-          <div className="category-heading">{category.category}</div>
-
-          {category.questions.map((item, idx) => (
-            <div key={idx} className="faq-item">
-              <div 
-                className="faq-question"
-                onClick={() => toggleAccordion(idx)}
-              >
-                {item.question}
-                <span className="accordion-icon">{activeIndex === idx ? '-' : '+'}</span>
-              </div>
-              {activeIndex === idx && (
-                <div className="faq-answer">{item.answer}</div>
-              )}
-              {idx !== category.questions.length - 1 && <hr className="separator" />}
+  return (
+    <>
+      <div className="parent">
+        <header className="faq-header">
+          <div className="brand-name">Neelaam</div>
+          <div className="header-icons">
+            <div className="icon">👤</div>
+            <div className="icon">🛒</div>
+            <div className="icon">❤️</div>
+          </div>
+        </header>
+        <div className="faq-container">
+          <div className="faq-heading">FAQs</div>
+          {faqData.map((category, index) => (
+            <div key={index} className="faq-category">
+              <div className="category-heading">{category.category}</div>
+              {category.questions.map((item, idx) => (
+                <div key={idx} className="faq-item">
+                  <div 
+                    className="faq-question"
+                    onClick={() => toggleAccordion(idx)}
+                  >
+                    {item.question}
+                    <span className="accordion-icon">{activeIndex === idx ? '-' : '+'}</span>
+                  </div>
+                  {activeIndex === idx && (
+                    <div className="faq-answer">{item.answer}</div>
+                  )}
+                  {idx !== category.questions.length - 1 && <hr className="separator" />}
+                </div>
+              ))}
             </div>
           ))}
         </div>
-      ))}
-    </div></div>
+      </div>
+      <footer className="footer">
+        <div className="footer-container">
+          <div className="footer-section">
+            <h3>INFORMATION</h3>
+            <ul>
+              <li>About Us</li>
+              <li>Contact Us</li>
+              <li>Careers</li>
+              <li>FAQs</li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h3>POLICIES</h3>
+            <ul>
+              <li>Privacy Policy</li>
+              <li>Terms & Conditions</li>
+              <li>Refund Policy</li>
+            </ul>
+          </div>
+          <div className="footer-section">
+            <h3>CONNECT</h3>
+            <ul>
+              <li>Facebook</li>
+              <li>Twitter</li>
+              <li>Instagram</li>
+            </ul>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <p>© 2024 Neelaam - Your Trusted Marketplace. All Rights Reserved.</p>
+        </div>
+      </footer>
     </>
   );
 };
