@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -373,15 +373,22 @@ const products = [
   },
 ];
 
-const ProductGrid = () => {
+const ProductGrid = ({ searchQuery }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const totalPages = Math.ceil(products.length / itemsPerPage);
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-  const currentProducts = products.slice(
+  const currentProducts = filteredProducts.slice(
     (currentPage - 1) * itemsPerPage,
     currentPage * itemsPerPage
   );
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchQuery]);
 
   return (
     <div className="w-full px-16 lg:px-32 xl:px-20 py-10">
@@ -445,25 +452,40 @@ const ProductGrid = () => {
                 href="#"
                 onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
                 className="bg-zinc-900 text-white hover:bg-blue-300 hover:text-zinc-900"
+                aria-label="Go to previous page"
               />
             </PaginationItem>
-            {[...Array(totalPages)].map((_, index) => (
-              <PaginationItem key={index}>
-                <PaginationLink
-                  href="#"
-                  onClick={() => setCurrentPage(index + 1)}
-                  isActive={currentPage === index + 1}
-                  className={`bg-zinc-900 text-white hover:bg-blue-300 hover:text-zinc-900 ${
-                    currentPage === index + 1 ? "bg-zinc-800 font-bold" : ""
-                  }`}
-                >
-                  {index + 1}
-                </PaginationLink>
-              </PaginationItem>
-            ))}
-            <PaginationItem>
-              <PaginationEllipsis />
-            </PaginationItem>
+            {[...Array(totalPages)].map((_, index) => {
+              const pageNumber = index + 1;
+              if (
+                pageNumber === 1 ||
+                pageNumber === totalPages ||
+                (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)
+              ) {
+                return (
+                  <PaginationItem key={index}>
+                    <PaginationLink
+                      href="#"
+                      onClick={() => setCurrentPage(pageNumber)}
+                      isActive={currentPage === pageNumber}
+                      className={`bg-zinc-900 text-white hover:bg-blue-300 hover:text-zinc-900 ${
+                        currentPage === pageNumber
+                          ? "bg-zinc-800 font-bold"
+                          : ""
+                      }`}
+                    >
+                      {pageNumber}
+                    </PaginationLink>
+                  </PaginationItem>
+                );
+              } else if (
+                (pageNumber === currentPage - 2 && currentPage > 3) ||
+                (pageNumber === currentPage + 2 && currentPage < totalPages - 2)
+              ) {
+                return <PaginationEllipsis key={index} />;
+              }
+              return null;
+            })}
             <PaginationItem>
               <PaginationNext
                 href="#"
@@ -471,6 +493,7 @@ const ProductGrid = () => {
                   setCurrentPage((prev) => Math.min(prev + 1, totalPages))
                 }
                 className="bg-zinc-900 text-white hover:bg-blue-300 hover:text-zinc-900"
+                aria-label="Go to next page"
               />
             </PaginationItem>
           </PaginationContent>

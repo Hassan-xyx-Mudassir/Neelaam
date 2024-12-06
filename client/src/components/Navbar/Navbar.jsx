@@ -202,7 +202,7 @@ const ShowAvatarOnSheet = ({ userData, handleLogout }) => {
   );
 };
 
-const Navbar = () => {
+const Navbar = ({ onSearchFocus, onSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [open, setOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -282,7 +282,7 @@ const Navbar = () => {
           </Sheet>
         </div>
         <div className="flex-grow max-w-2xl mx-auto w-full sm:mx-2">
-          <SearchBar />
+          <SearchBar onFocus={onSearchFocus} onSearch={onSearch} />
         </div>
         <div className="hidden sm:block">
           {!isLoggedIn ? (

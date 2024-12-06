@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -42,7 +42,7 @@ const createStars = (ratings) => {
   );
 };
 
-const SearchBar = () => {
+const SearchBar = ({ onFocus, onSearch }) => {
   const [range, setRange] = useState([1000, 1000000]);
   const [rating, setRating] = useState([]);
   const tags = [
@@ -61,6 +61,22 @@ const SearchBar = () => {
   ];
   const [exampleTags, setExampleTags] = useState(tags);
   const [activeTagIndex, setActiveTagIndex] = useState(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    onSearch(searchQuery);
+  }, [searchQuery, onSearch]);
+
+  const handleFocus = () => {
+    setIsFocused(true);
+    onFocus(true);
+  };
+
+  const handleBlur = () => {
+    setIsFocused(false);
+    onFocus(false);
+  };
 
   window.addEventListener("keydown", function (e) {
     if (e.ctrlKey && e.key == "k") {
@@ -78,6 +94,10 @@ const SearchBar = () => {
           id="search"
           placeholder="Search..."
           className="border-0 focus-visible:ring-transparent placeholder:italic"
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
         />
         <Label htmlFor="search">
           <Kbd
