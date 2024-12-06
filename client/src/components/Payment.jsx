@@ -13,14 +13,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import axios from "axios";
 
-export default function Checkout() {
+export default function Checkout(params) {
   const { text, price, plan } = useGlobalState();
 
   // States for Discount Code
   const [discountCode, setDiscountCode] = useState("");
   const [discountedPrice, setDiscountedPrice] = useState(price);
   const [isDiscountApplied, setIsDiscountApplied] = useState(false);
+  const [productName, setProductName] = useState("CNC Discord Membership");
 
   // Toast notifications
   const { toast } = useToast();
@@ -60,6 +62,31 @@ export default function Checkout() {
       });
     }
   };
+  const handlePayment = async () => {
+    const paymentData = {
+      umserName: nameOnCard,
+      userEmail: email,
+      cardNumber: cardNumber,
+      cardCVC: cardCVC,
+      price: price,
+      userCountry: country,
+      productName: productName,
+    };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/payment/add", // Ensure correct URL
+        paymentData
+      );
+      console.log("Payment added successfully:", response.data.payment);
+    } catch (error) {
+      if (error.response) {
+        console.error("Error adding payment:", error.response.data.error);
+      } else {
+        console.error("Network error:", error.message);
+      }
+    }
+  };
 
   return (
     <>
@@ -96,7 +123,7 @@ export default function Checkout() {
               <div className="flex flex-row">
                 <div className="flex flex-col space-y-1 p-1.5">
                   <a className="text-[#dcdcdc] underline font-bold" href="">
-                    CNC Discord Membership
+                    {productName}
                   </a>
                   <a className="text-[#dcdcdc] underline font-bold" href="">
                     Tallguytycoon
@@ -235,6 +262,7 @@ export default function Checkout() {
 
               {/* Submit Button */}
               <Button
+                onClick={handlePayment}
                 variant="outline"
                 className="ml-5 mt-4 mb-4 h-[50px] w-[360px] text-s text-black bg-[#dcdcdc] border border-[#dcdcdc] hover:text-black hover:bg-pink-400 hover:scale-105 hover:border-[#dcdcdc] hover:translate-[-5px_-5px] transition-shadow duration-200"
               >
