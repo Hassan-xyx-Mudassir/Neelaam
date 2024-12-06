@@ -21,9 +21,8 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-
       spacing: {
-        15: "3.75rem", // Fixed: Added unit "rem"
+        15: "3.75rem",
         20: "5rem",
         25: "6.25rem", // 100px
         30: "7.5rem", // 120px
@@ -36,7 +35,7 @@ export default {
         transparent: "transparent",
         current: "currentColor",
         primary: "#09090b",
-        secondary: "#ffffff",
+        secondary: "#27272a",
         customTeal: "#36a9ae",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

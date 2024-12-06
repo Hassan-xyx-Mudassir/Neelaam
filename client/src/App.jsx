@@ -1,15 +1,16 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/components/app-sidebar"
-import  Navbar  from "./components/Navbar/Navbar";
+// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+// import { AppSidebar } from "@/components/app-sidebar";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <SidebarProvider>
-      <AppSidebar />
-      <main>
-        <SidebarTrigger />
-      </main>
-    </SidebarProvider>
+    // <SidebarProvider>
+    //   <AppSidebar />
+    //   <main>
+    //     <SidebarTrigger />
+    //   </main>
+    // </SidebarProvider>
+    <Homepage />
   );
 }
 

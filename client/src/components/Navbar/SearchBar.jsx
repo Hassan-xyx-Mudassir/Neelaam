@@ -81,7 +81,10 @@ const SearchBar = () => {
           className="border-0 focus-visible:ring-transparent placeholder:italic"
         />
         <Label htmlFor="search">
-          <Kbd className="bg-zinc-900 text-[#A0A0A4]" keys={["command"]}>
+          <Kbd
+            className="font-roboto bg-zinc-900 text-[#A0A0A4]"
+            keys={["command"]}
+          >
             K
           </Kbd>
         </Label>
