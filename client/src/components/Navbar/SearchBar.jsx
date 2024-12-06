@@ -31,17 +31,20 @@ import { TagInput } from "emblor";
 
 const createStars = (ratings) => {
   return (
-    <div className="flex gap-2">
-      {Array.from({ length: ratings }).map((_, index) => (
-        <Rating key={index} size={20} color="yellow" />
-      ))}
-    </div>
+    <>
+      <div className="flex items-center gap-2 whitespace-nowrap">
+        <span className="text-zinc-400 mr-2">{`${ratings} Stars`}</span>
+        {Array.from({ length: ratings }).map((_, index) => (
+          <Rating key={index} size={20} color="yellow" />
+        ))}
+      </div>
+    </>
   );
 };
 
 const SearchBar = () => {
   const [range, setRange] = useState([1000, 1000000]);
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState([]);
   const tags = [
     {
       id: "Gifts",
@@ -77,7 +80,7 @@ const SearchBar = () => {
           placeholder="Search..."
           className="border-0 focus-visible:ring-transparent placeholder:italic"
         />
-        <Label for="searchInput">
+        <Label htmlFor="search">
           <Kbd className="bg-zinc-900 text-[#A0A0A4]" keys={["command"]}>
             K
           </Kbd>
@@ -145,7 +148,7 @@ const SearchBar = () => {
               aria-label="Rating"
               title="Rating"
             >
-              <CheckboxGroup>
+              <CheckboxGroup value={rating} onValueChange={setRating}>
                 <Checkbox
                   color="warning"
                   classNames={{ base: "gap-2 " }}

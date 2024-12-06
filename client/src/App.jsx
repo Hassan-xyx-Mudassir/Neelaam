@@ -1,9 +1,9 @@
-import Navbar from "./components/Navbar/Navbar";
+import Homepage from "./pages/Homepage";
 
 function App() {
   return (
-    <div className="font-roboto bg-zinc-950 min-h-screen">
-      <Navbar />
+    <div>
+      <Homepage />
     </div>
   );
 }
