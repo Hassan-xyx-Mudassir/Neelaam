@@ -1,0 +1,46 @@
+/* Outer banner container */
+.banner-container {
+  display: inline-flex;
+  align-items: center;
+  background-color: #38b2ac; /* Teal color */
+  color: white; /* White text */
+  font-weight: bold;
+  font-size: 16px; /* Text size */
+  padding: 8px 16px; /* Padding for spacing */
+  border: 1px solid black; /* Black border around the rectangle */
+  position: relative; /* For positioning the triangle */
+}
+
+/* The triangle on the right */
+.banner-triangle {
+  width: 0;
+  height: 0;
+  border-top: 20px solid transparent; /* Top height of the triangle */
+  border-bottom: 20px solid transparent; /* Bottom height of the triangle */
+  border-left: 20px solid #38b2ac; /* Teal color to match the banner */
+  position: absolute;
+  right: -20px; /* Align the triangle perfectly with the edge */
+  top: 50%; /* Center the triangle vertically */
+  transform: translateY(-50%); /* Ensure triangle aligns with banner */
+  border-left-color: #38b2ac; /* Matches the banner color */
+  border-right: 1px solid black; /* Add black border on the triangle's right edge */
+}
+
+/* Text styling */
+.banner-text {
+  z-index: 1; /* Ensure text stays above the triangle */
+}
+.clip-star {
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+}
